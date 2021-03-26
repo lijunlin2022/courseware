@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/lib/theme-chalk/index.css">
+  <style lang="css">
+    .box-up {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    .box-down {
+      display: flex;
+      flex-direction: column;
+      max-width: 200px;
+    }
+    .el-input {
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="box-up">
+      <el-input v-model="message" class="el-input"></el-input>
+      <el-button v-on:click="addItem">添加</el-button>
+    </div>
+    <div class="box-down">
+      <el-tag v-for="(item, index) in items" v-on:click="deleteItem(index)">
+        {{ item }}
+      </el-tag>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+  <script>
+    const Demo = {
+      data() {
+        return {
+          message: "",
+          items: [
+            "A",
+            "B"
+          ]
+        };
+      },
+      methods: {
+        addItem() {
+          this.items.push(this.message);
+          this.message = "";
+        },
+        deleteItem(index) {
+          this.items.splice(index, 1);
+        }
+      } 
+    };
+    const app = Vue.createApp(Demo);
+    app.use(ElementPlus);
+    app.mount("#app");
+  </script>
+</body>
+</html>

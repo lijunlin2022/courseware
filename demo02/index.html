@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input v-model="message" />
+    <button v-on:click="addItem">添加</button>
+    <div>
+      <ul>
+        <li v-for="(item, index) in items" v-on:click="deleteItem(index)">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const Demo = {
+      data() {
+        return {
+          message: "",
+          items: [
+            "A",
+            "B"
+          ]
+        };
+      },
+      methods: {
+        addItem() {
+          this.items.push(this.message);
+          this.message = "";
+        },
+        deleteItem(index) {
+          this.items.splice(index, 1);
+        }
+      } 
+    };
+    Vue.createApp(Demo).mount("#app");
+  </script>
+</body>
+</html>
