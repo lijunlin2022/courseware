@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <layfolk-btn></layfolk-btn>
+    <layfolk-btn></layfolk-btn>
+    <layfolk-btn></layfolk-btn>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const Demo = {
+      data() {
+        return {
+          message: "你好啊"
+        }
+      }
+    };
+    const app = Vue.createApp(Demo);
+    app.component("layfolk-btn", {
+      data() {
+        return {
+          cnt: 0
+        };
+      },
+      template: `<h1 v-on:click="cnt++">
+                    {{ cnt }}
+                  </h1>`
+    });
+    app.mount("#app");
+  </script>
+</body>
+</html>
